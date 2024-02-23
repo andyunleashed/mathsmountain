@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://kit.fontawesome.com/ebd888569b.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="mountain.ico">
     <style>
         @media print {
             @page { margin: 0; }
@@ -15,7 +16,7 @@
 </head>
 <body class="px-4">
     <div x-data="mathsMountain()">
-        <h1 class="hidden print:block font-bold text-3xl mt-4 py-4 pl-4">Maths Mountain! <i class="fa fa-mountain"></i></h1>
+        <h1 class="hidden print:block font-bold text-3xl mt-4 py-4 pl-4">Maths Mountain! <i class="fa-sharp fa-light fa-mountain-sun"></i></h1>
         <div>
             <table class="table-fixed border-separate border-spacing-4 text-xl text-center" x-show="challenges">
                 <tbody>
@@ -56,7 +57,7 @@
                             <td class="text-left print:hidden">
                                 <button type="button" x-on:click="checkAnswer(challenge)" class="whitespace-nowrap rounded-md px-5 py-3.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" :class="challenge.check_button_classes">
                                     <span x-show="challenge.correct">Correct! Well Done <i class="ml-1 fa fa-face-smile-hearts text-white"></i></span>
-                                    <span x-show="challenge.checked && !challenge.correct">Sorry, that's not right <i class="ml-1 fa fa-face-sad-cry text-orange-500"></i></span>
+                                    <span x-show="challenge.checked && !challenge.correct">Sorry, that's not right <i class="ml-1 fa-regular fa-face-thinking text-orange-500"></i></span>
                                     <span x-show="!challenge.checked">Check Answer <i class="ml-1 fa fa-check-to-slot text-white"></i></span>
                                 </button>
                             </td>
