@@ -111,7 +111,7 @@
                     type="button"
                     class="ml-1 pt-0.5 pb-1 px-4 text-2xl border border-pink-500 rounded"
                     :class="operator == 'Addition' ? 'bg-pink-500 text-white' : 'bg-white text-pink-500'"
-                    x-on:click="setChallengeType('operator', 'Addition', '&plus')">&plus;</button>
+                    x-on:click="setChallengeType('operator', 'Addition', '&plus;')">&plus;</button>
                 <button
                     type="button"
                     class="ml-1 pt-0.5 pb-1 px-4 text-2xl border border-pink-500 rounded"
@@ -205,7 +205,7 @@
                         });
                     }
                     if(this.word_challenge == 'Triples') {
-                        let tripleNumber = Math.ceil(Math.random() * Math.floor(this.challenge_target / 2));
+                        let tripleNumber = Math.ceil(Math.random() * Math.floor(this.challenge_target / 3));
                         let wording = `${tripleNumber} + ${tripleNumber} + ${tripleNumber}`;
                         if(Math.random() > 0.5) {
                             wording = 'Triple ' + tripleNumber;
