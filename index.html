@@ -11,12 +11,17 @@
     <style>
         @media print {
             @page { margin: 0; }
+            .no-print {
+                display: none;
+                visibility: hidden;
+            }
         }
     </style>
 </head>
 <body class="px-4">
     <div x-data="mathsMountain()">
         <h1 class="hidden print:block font-bold text-3xl mt-4 py-4 pl-4">Maths Mountain! <i class="fa-sharp fa-light fa-mountain-sun"></i></h1>
+        <a class="no-print" style="position: fixed; top: 10px; right: 20px;" href="https://github.com/andyunleashed/mathsmountain" target="_blank"><i class="fa-brands fa-github"></i></a>
         <div>
             <template x-if="challenge_type == 'operator'">
                 <table class="table-fixed border-separate border-spacing-4 text-xl text-center" x-show="challenges">
