@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mia's Maths Mountain</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icon-sm.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/icon-md.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-lg.png">
+    <title>Maths Mountain</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://kit.fontawesome.com/ebd888569b.js" crossorigin="anonymous"></script>
@@ -15,6 +22,12 @@
                 display: none;
                 visibility: hidden;
             }
+        }
+        body {
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
         }
     </style>
 </head>
