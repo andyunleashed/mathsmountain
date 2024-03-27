@@ -120,7 +120,7 @@
         </div>
         <div class="print:hidden mt-4" :class="challenges.length ? 'border-t border-pink-500 pt-4' : null">
             <label for="challenge-target" class="block w-full">
-                <span class="font-bold">Challenge <span x-text="challenge_type == 'operator' ? 'Target' : 'Maximum'"></span>:</span>
+                <span class="font-bold" x-text="prompt"></span>
                 <input id="challenge-target" x-model.number="challenge_target" type="text" class="w-16 p-2 border border-indigo-500 rounded text-center relative" style="top: 1px;">
             </label>
             <label class="block w-full mt-2">
@@ -135,11 +135,11 @@
                     class="ml-1 pt-0.5 pb-1 px-4 text-2xl border border-pink-500 rounded"
                     :class="operator == 'Subtraction' ? 'bg-pink-500 text-white' : 'bg-white text-pink-500'"
                     x-on:click="setChallengeType('operator', 'Subtraction', '&minus;')">&minus;</button>
-                <!-- <button
+                <button
                     type="button"
                     class="ml-1 pt-0.5 pb-1 px-4 text-2xl border border-pink-500 rounded"
                     :class="operator == 'Multiplication' ? 'bg-pink-500 text-white' : 'bg-white text-pink-500'"
-                    x-on:click="setChallengeType('operator', 'Multiplication', '&times;')">&times;</button> -->
+                    x-on:click="setChallengeType('operator', 'Multiplication', '&times;')">&times;</button>
                 <!-- <button
                     type="button"
                     class="ml-1 pt-0.5 pb-1 px-4 text-2xl border border-pink-500 rounded"
@@ -174,8 +174,12 @@
                 operator: 'Addition',
                 operator_symbol: '&plus;',
                 placeholder: '#',
+                prompt: 'Challenge Target: ',
                 word_challenge: null,
                 challenges: [],
+                setPrompt(prompt) {
+                    this.prompt = prompt + ': ';
+                },
                 setChallengeType(type, name, symbol) {
                     this.challenges = [];
                     this.challenge_type = type;
@@ -206,6 +210,29 @@
                         correct: false,
                         answer_given: null,
                         actual_answer: challengeAnswer,
+                        checked: false,
+                        check_button_classes: 'border-indigo-600 bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 text-white',
+                    });
+                },
+                createMultiplicationChallenge(inputId, firstNumber, secondNumber) {
+                    let challengeAnswer = firstNumber * secondNumber;
+                    let actualAnswer = null;
+                    let blankedOutInt = Math.ceil(Math.random() * 2);
+                    if(blankedOutInt === 1) {
+                        actualAnswer = firstNumber;
+                    } else if(blankedOutInt === 2) {
+                        actualAnswer = secondNumber;
+                    } else if(blankedOutInt === 3) {
+                        actualAnswer = challengeAnswer;
+                    }
+                    this.challenges.push({
+                        id: inputId,
+                        first_number: blankedOutInt === 1 ? this.placeholder : firstNumber,
+                        second_number: blankedOutInt === 2 ? this.placeholder : secondNumber,
+                        answer: blankedOutInt === 3 ? this.placeholder : challengeAnswer,
+                        correct: false,
+                        answer_given: null,
+                        actual_answer: actualAnswer,
                         checked: false,
                         check_button_classes: 'border-indigo-600 bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 text-white',
                     });
@@ -276,6 +303,15 @@
                                 let secondNumber = firstNumber - this.challenge_target;
                                 this.createOperatorChallenge(i, firstNumber, secondNumber);
                             } else if(this.operator === 'Multiplication') {
+                                let firstNumer, secondNumber;
+                                if(Math.random() > 0.5) {
+                                    firstNumber = Math.ceil(Math.random() * 12);
+                                    secondNumber = this.challenge_target;
+                                } else {
+                                    firstNumber = this.challenge_target;
+                                    secondNumber = Math.ceil(Math.random() * 12);
+                                }
+                                this.createMultiplicationChallenge(i, firstNumber, secondNumber);
                             } else if(this.operator === 'Division') {
                             }
                         }
@@ -289,8 +325,16 @@
                 setOperator(operator, operatorSymbol) {
                     this.operator = operator;
                     this.operator_symbol = operatorSymbol;
+                    if(this.operator == 'Multiplication') {
+                        this.challenge_target = 2;
+                        this.setPrompt('Times Table');
+                    } else {
+                        this.challenge_target = 20;
+                        this.setPrompt('Challenge Target');
+                    }
                 },
                 setWordChallenge(name) {
+                    this.setPrompt('Challenge Maximum');
                     this.word_challenge = name;
                 },
                 resetChallenges() {
