@@ -13,7 +13,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://kit.fontawesome.com/a5d7376527.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="mountain.ico">
     <style>
         @media print {
@@ -29,12 +29,17 @@
             -webkit-touch-callout: none;
             user-select: none;
         }
+        .bx {
+            position: relative;
+            top: -1px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body class="px-4">
     <div x-data="mathsMountain()">
-        <h1 class="hidden print:block font-bold text-3xl mt-4 py-4 pl-4">Maths Mountain! <i class="fa-sharp fa-light fa-mountain-sun"></i></h1>
-        <a class="no-print" style="position: fixed; top: 10px; right: 20px;" href="https://github.com/andyunleashed/mathsmountain" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <h1 class="hidden print:block font-bold text-3xl mt-4 py-4 pl-4">Maths Mountain! <i class="bx bx-xs bx-landscape"></i></h1>
+        <a class="no-print" style="position: fixed; top: 10px; right: 20px;" href="https://github.com/andyunleashed/mathsmountain" target="_blank"><i class="bx bx-xs bxl-github"></i></a>
         <div>
             <template x-if="challenge_type == 'operator'">
                 <table class="table-fixed border-separate border-spacing-4 text-xl text-center" x-show="challenges">
@@ -75,13 +80,13 @@
                                 </td>
                                 <td class="text-left print:hidden">
                                     <button type="button" x-on:click="checkAnswer(challenge)" class="whitespace-nowrap rounded-md px-5 py-3.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" :class="challenge.check_button_classes">
-                                        <span x-show="challenge.correct">Correct! Well Done <i class="ml-1 fa fa-face-smile-hearts text-white"></i></span>
-                                        <span x-show="challenge.checked && !challenge.correct">Sorry, that's not right <i class="ml-1 fa-regular fa-face-thinking text-orange-500"></i></span>
-                                        <span x-show="!challenge.checked">Check Answer <i class="ml-1 fa fa-check-to-slot text-white"></i></span>
+                                        <span x-show="challenge.correct">Correct! Well Done <i class="bx bx-xs bx-happy-heart-eyes ml-1 text-white"></i></span>
+                                        <span x-show="challenge.checked && !challenge.correct">Sorry, that's not right <i class="ml-1 bx bx-xs bx-confused text-orange-500"></i></span>
+                                        <span x-show="!challenge.checked">Check Answer <i class="ml-1 bx bx-xs bx-bolt-circle text-white"></i></span>
                                     </button>
                                 </td>
                                 <td class="text-left print:hidden">
-                                    <button type="button" x-show="!challenge.correct" x-on:click="tryAgain(challenge)" class="whitespace-nowrap rounded-md border border-pink-500 text-pink-500 px-5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"><i class="ml-1 fa-light fa-redo-alt"></i> Try Again</button>
+                                    <button type="button" x-show="!challenge.correct" x-on:click="tryAgain(challenge)" class="whitespace-nowrap rounded-md border border-pink-500 text-pink-500 px-5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"><i class="ml-1 bx bx-xs bx-redo"></i> Try Again</button>
                                 </td>
                             </tr>
                         </template>
@@ -104,13 +109,13 @@
                                 </td>
                                 <td class="text-left print:hidden">
                                     <button type="button" x-on:click="checkAnswer(challenge)" class="whitespace-nowrap rounded-md px-5 py-3.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" :class="challenge.check_button_classes">
-                                        <span x-show="challenge.correct">Correct! Well Done <i class="ml-1 fa fa-face-smile-hearts text-white"></i></span>
-                                        <span x-show="challenge.checked && !challenge.correct">Sorry, that's not right <i class="ml-1 fa-regular fa-face-thinking text-orange-500"></i></span>
-                                        <span x-show="!challenge.checked">Check Answer <i class="ml-1 fa fa-check-to-slot text-white"></i></span>
+                                        <span x-show="challenge.correct">Correct! Well Done <i class="ml-1 bx bx-xs bx-happy-heart-eyes text-white"></i></span>
+                                        <span x-show="challenge.checked && !challenge.correct">Sorry, that's not right <i class="ml-1 bx bx-xs bx-confused text-orange-500"></i></span>
+                                        <span x-show="!challenge.checked">Check Answer <i class="ml-1 bx bx-xs bx-bolt-circle text-white"></i></span>
                                     </button>
                                 </td>
                                 <td class="text-left print:hidden">
-                                    <button type="button" x-show="!challenge.correct" x-on:click="tryAgain(challenge)" class="whitespace-nowrap rounded-md border border-pink-500 text-pink-500 px-5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"><i class="ml-1 fa-light fa-redo-alt"></i> Try Again</button>
+                                    <button type="button" x-show="!challenge.correct" x-on:click="tryAgain(challenge)" class="whitespace-nowrap rounded-md border border-pink-500 text-pink-500 px-5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"><i class="ml-1 bx bx-xs bx-redo"></i> Try Again</button>
                                 </td>
                             </tr>
                         </template>
@@ -161,7 +166,7 @@
                     :class="word_challenge == 'Triples' ? 'bg-pink-500 text-white' : 'bg-white text-pink-500'"
                     x-on:click="setChallengeType('word', 'Triples')">Triples</button>
             </label>
-            <button type="button" x-on:click="generateChallenges()" class="inline-block whitespace-nowrap mt-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Make <span x-text="operator"></span> Challenges <i class="ml-1 fa-light fa-rotate text-white"></i></button>
+            <button type="button" x-on:click="generateChallenges()" class="inline-block whitespace-nowrap mt-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Make <span x-text="operator"></span> Challenges <i class="ml-1 bx bx-xs bx-rotate-right text-white"></i></button>
         </div>
     </div>
 
